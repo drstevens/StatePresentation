@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>State Example</title>
+    <link href="syntax.css" rel="stylesheet">
+    <link href="impress-demo.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="impress" style="position: absolute; scale(1);" data-transition-duration="5"><div style="position: absolute;">
+        <div id="1" class="step slide active">
+            <q>Weighted Interval Scheduling</q>
+            <p>Given a set of jobs <i>J</i></p>
+            <p>Job <i>i ∈ J</i> has a start time <i>s<sub>i</sub></i>, a finish time <i>f<sub>i</sub></i>, and a weight <i>w<sub>i</sub></i></p>
+            <p>Find the maximum sum of weights for a subset <i>O</i> of non-overlapping jobs</p>
+        </div>
+
+        <div id="2" class="step slide">
+            <pre class="sourceCode Scala" >
+              <code class="sourceCode Scala" >
+<span class="kw">case class</span> Job(s: Int, f: Int, w: Int)
+
+<span class="kw">def</span> optimumSchedule: List[Job] => Int
+              </code>
+            </pre>
+        </div>
+
+        <div id="3" class="step slide">
+            <pre class="sourceCode Scala" >
+              <code class="sourceCode Scala" >
+<span class="kw">case class</span> Job(s: Int, f: Int, w: Int)
+
+<span class="kw">def</span> optimumSchedule: List[Job] => Int = {
+  <span class="kw">case</span> Nil => <span class="dv">0</span>
+  <span class="kw">case</span> i :: rest =>
+    <span class="kw">val</span> nonOverlaps = rest.filterNot(i.overlaps)
+    max(optimumSchedule(nonOverlaps) + i.w,
+        optimumSchedule(rest))
+}
+
+              </code>
+            </pre>
+        </div>
+
+        <div id="4" class="step slide">
+            <pre class="sourceCode Scala" >
+              <code class="sourceCode Scala" >
+<span class="kw">case class</span> Job(s: Int, f: Int, w: Int)
+
+<span class="kw">def</span> optimumSchedule: List[Job] => Int = {
+  <span class="kw">case</span> Nil => <span class="dv">0</span>
+  <span class="kw">case</span> i :: rest =>
+    <span class="kw">val</span> nonOverlaps = rest.filterNot(i.overlaps)
+    max(optimumSchedule(nonOverlaps) + i.w,
+        optimumSchedule(rest))
+}
+
+<span class="kw">val</span> jobs: List[Job]
+optimumSchedule(jobs.sortBy(_.s))
+  
+              </code>
+            </pre>
+        </div>
+
+        <div id="5" class="step slide">
+          <q>Show me the <a href="code.html">code</a>...</q>
+        </div>
+      </div>
+    </div>
+    <script src="impress.js"></script>
+    <script>impress().init();</script>
+  </body>
+</html>
