@@ -1,6 +1,6 @@
 package org.example
 
-import org.specs2.mutable.Specification
+import org.specs2.mutable._
 
 class WeightedIntervalSchedulingSpec extends Specification {
 
@@ -27,7 +27,7 @@ class WeightedIntervalSchedulingSpec extends Specification {
 
   "naiveOptimumSchedule" should {
     "return optimum schedule" in {
-      tests.foreach {
+      tests.map {
         case (input, expected) => naiveOptimumSchedule(input) ==== expected
       }
     }
@@ -35,7 +35,7 @@ class WeightedIntervalSchedulingSpec extends Specification {
 
   "memoOptimumSchedule" should {
     "return optimum schedule" in {
-      tests.foreach {
+      tests.map {
         case (input, expected) => memoOptimumSchedule(input) ==== expected
       }
     }
@@ -43,7 +43,7 @@ class WeightedIntervalSchedulingSpec extends Specification {
 
   "stateOptimumSchedule" should {
     "return optimum schedule" in {
-      tests.foreach {
+      tests.map {
         case (input, expected) => stateOptimumSchedule(input) ==== expected
       }
     }
@@ -51,7 +51,7 @@ class WeightedIntervalSchedulingSpec extends Specification {
 
   "state2OptimumSchedule" should {
     "return optimum schedule" in {
-      tests.foreach {
+      tests.map {
         case (input, expected) => state2OptimumSchedule(input) ==== expected
       }
     }
